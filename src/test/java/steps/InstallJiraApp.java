@@ -19,16 +19,16 @@ public class InstallJiraApp {
         base.setupBrowser("win", "firefox", propertyManager.getResourceBundle.getProperty("BASE_URL"));
     }
 
-    @When("User sign in using valid login email address")
-    public void jiraLogin() {
-        installAppTests = new InstallAppTests(base.getdriver());
-        installAppTests.userJiraSgnIn();
-        base.closeBrowser();
-    }
-
     @Then("User should be able to install app")
     public void user_should_be_able_to_install_app() {
         installAppTests = new InstallAppTests(base.getdriver());
         installAppTests.validateAppInstall();
     }
+
+    @When("User sign in using valid login email address {string}$\"")
+    public void userSignInUsingValidLoginEmailAddress$(String username) throws Throwable {
+        installAppTests = new InstallAppTests(base.getdriver());
+        installAppTests.userJiraSgnIn(username);
+        base.closeBrowser();
+         }
 }

@@ -254,14 +254,14 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         return tryItLoader;
     }
 
-    public void userJiraSgnIn() {
+    public void userJiraSgnIn(String username) {
 
         JavascriptExecutor js = (JavascriptExecutor) base.getdriver();
         long randomNum = generateTestData.generateRandomNumber();
         String randomString = generateTestData.generateAlphaNumericString(5);
 
         base.waitForElementToBeClickable(10, getJiraUsernameField());
-        getJiraUsernameField().sendKeys(propertyManager.getResourceBundle.getProperty("JIRA_LOGIN_USERNAME"));
+        getJiraUsernameField().sendKeys(username);
         base.waitForElementToBeClickable(10, getContinueBtn());
         getContinueBtn().click();
         base.waitForElementVisible(10, getJiraPasswordField());
