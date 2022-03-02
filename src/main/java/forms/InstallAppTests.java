@@ -254,26 +254,21 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         return tryItLoader;
     }
 
-    public void userJiraLogin() {
-        //for (int i = 0; i < 1000; i ++) {
-            base.waitForElementToBeClickable(10, getJiraUsernameField());
-            getJiraUsernameField().sendKeys(propertyManager.getResourceBundle.getProperty("JIRA_LOGIN_USERNAME"));
-            base.waitForElementToBeClickable(10, getContinueBtn());
-            getContinueBtn().click();
-            base.waitForElementVisible(10, getJiraPasswordField());
-            getJiraPasswordField().clear();
-            getJiraPasswordField().sendKeys(propertyManager.getResourceBundle.getProperty("JIRA_LOGIN_PASSWORD"));
-            getJiraLoginBtn().click();
-            base.implicitWait(10);
-        //}
-    }
-
-    public void createJiraInstance() {
+    public void userJiraSgnIn() {
 
         JavascriptExecutor js = (JavascriptExecutor) base.getdriver();
         long randomNum = generateTestData.generateRandomNumber();
         String randomString = generateTestData.generateAlphaNumericString(5);
 
+        base.waitForElementToBeClickable(10, getJiraUsernameField());
+        getJiraUsernameField().sendKeys(propertyManager.getResourceBundle.getProperty("JIRA_LOGIN_USERNAME"));
+        base.waitForElementToBeClickable(10, getContinueBtn());
+        getContinueBtn().click();
+        base.waitForElementVisible(10, getJiraPasswordField());
+        getJiraPasswordField().clear();
+        getJiraPasswordField().sendKeys(propertyManager.getResourceBundle.getProperty("JIRA_LOGIN_PASSWORD"));
+        getJiraLoginBtn().click();
+        base.implicitWait(10);
         base.waitForElementToBeClickable(10, getTryConfluence());
         getTryConfluence().click();
         base.waitForElementDisappear(10, getSpinner());
@@ -284,6 +279,7 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         js.executeScript("arguments[0].click();", getCreateANewSite());
         getNewUrl().clear();
         getNewUrl().sendKeys(propertyManager.getResourceBundle.getProperty("SITE_URL_PREFIX") + randomString + randomNum);
+        System.out.print(propertyManager.getResourceBundle.getProperty("SITE_URL_PREFIX") + randomString + randomNum);
         base.waitForElementToBeClickable(10, getContinueBtnNewSite());
         js.executeScript("arguments[0].click();", getContinueBtnNewSite());
         base.getdriver().switchTo().defaultContent();
@@ -292,9 +288,9 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         base.waitForElementToBeClickable(10, getGetStartedBtn());
         js.executeScript("arguments[0].click();", getGetStartedBtn());
         base.waitForElementDisappear(90, getJiraNewSiteLoader());
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.open()");
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         base.getdriver().switchTo().window(tabs.get(1));
         base.getdriver().get("https://" + propertyManager.getResourceBundle.getProperty("SITE_URL_PREFIX") + randomString + randomNum + ".atlassian.net/jira/marketplace");
         base.waitForElementVisible(10, getSearchForAppsField());
@@ -310,15 +306,40 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         base.waitForElementToBeClickable(10, getConfirmInstallBtn());
         getConfirmInstallBtn().click();
         base.waitForElementDisappear(30, getTryItLoader());
-
+        base.waitForElementVisible(10, getAppAddedBtn());
+        base.getdriver().get("https://" + propertyManager.getResourceBundle.getProperty("SITE_URL_PREFIX") + randomString + randomNum + ".atlassian.net/jira/marketplace");
+        base.waitForElementVisible(10, getSearchForAppsField());
+        getSearchForAppsField().clear();
+        getSearchForAppsField().sendKeys(propertyManager.getResourceBundle.getProperty("APP_SECOND") + Keys.ENTER);
+        base.waitForElementVisible(10, getEvnAppLink());
+        base.waitForElementToBeClickable(10, getEvnAppLink());
+        getEvnAppLink().click();
+        base.waitForElementVisible(10, getTryItFree());
+        base.waitForElementToBeClickable(10, getTryItFree());
+        getTryItFree().click();
+        base.waitForElementVisible(10, getConfirmInstallBtn());
+        base.waitForElementToBeClickable(10, getConfirmInstallBtn());
+        getConfirmInstallBtn().click();
+        base.waitForElementDisappear(30, getTryItLoader());
+        base.waitForElementVisible(10, getAppAddedBtn());
+        base.getdriver().get("https://" + propertyManager.getResourceBundle.getProperty("SITE_URL_PREFIX") + randomString + randomNum + ".atlassian.net/jira/marketplace");
+        base.waitForElementVisible(10, getSearchForAppsField());
+        getSearchForAppsField().clear();
+        getSearchForAppsField().sendKeys(propertyManager.getResourceBundle.getProperty("APP_THIRD") + Keys.ENTER);
+        base.waitForElementVisible(10, getEvnAppLink());
+        base.waitForElementToBeClickable(10, getEvnAppLink());
+        getEvnAppLink().click();
+        base.waitForElementVisible(10, getTryItFree());
+        base.waitForElementToBeClickable(10, getTryItFree());
+        getTryItFree().click();
+        base.waitForElementVisible(10, getConfirmInstallBtn());
+        base.waitForElementToBeClickable(10, getConfirmInstallBtn());
+        getConfirmInstallBtn().click();
+        base.waitForElementDisappear(30, getTryItLoader());
+        base.waitForElementVisible(10, getAppAddedBtn());
     }
 
-    public boolean validateJiraEVMAppInstallation() {
-        base.waitForElementVisible(10, getAppAddedBtn());
-        String appAddedConfirmation = getAppAddedBtn().getText();
-        if (appAddedConfirmation.equals("Added")) {
-            return true;
-        }
-        return false;
+    public void validateAppInstall() {
+
     }
 }

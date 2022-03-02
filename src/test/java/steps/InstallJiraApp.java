@@ -15,25 +15,20 @@ public class InstallJiraApp {
     InstallAppTests installAppTests;
 
     @Given("User is redirected to Jira sign in page")
-    public void redirectToSignUpPage() {
+    public void user_is_redirected_to_jira_sign_in_page() {
         base.setupBrowser("win", "firefox", propertyManager.getResourceBundle.getProperty("BASE_URL"));
     }
 
     @When("User sign in using valid login email address")
-    public void   jiraLogin() {
+    public void jiraLogin() {
         installAppTests = new InstallAppTests(base.getdriver());
-        installAppTests.userJiraLogin();
-    }
-
-    @And("User creates instance on Jira cloud")
-    public void createInstance() {
-        installAppTests = new InstallAppTests(base.getdriver());
-        installAppTests.createJiraInstance();
+        installAppTests.userJiraSgnIn();
+        base.closeBrowser();
     }
 
     @Then("User should be able to install app")
-    public boolean validateAppInstall() {
+    public void user_should_be_able_to_install_app() {
         installAppTests = new InstallAppTests(base.getdriver());
-        return installAppTests.validateJiraEVMAppInstallation();
+        installAppTests.validateAppInstall();
     }
 }
