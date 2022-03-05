@@ -21,7 +21,7 @@ public interface installJiraApp {
     String SIGN_UP = "//span[contains(text(),'Sign up')]";
     String WEBSITE = "//input[@class='site-name-field input css-1rmy9fa']";
     String SKIP_QUESTION_FIRST = "//div[@lass='sc-cSHVUG iABUfs sc-jzJRlG blbHKo']/button/span/span";
-    String TRY_CONFLUENCE = "//span[@class='css-1wsum1f']//span[contains(text(),'Try')]";
+    String TRY_CONFLUENCE = "//img[@class='sc-bwzfXH DeTcR' and @src='https://fd-assets.prod.atl-paas.net/images/logos/confluence/confluence-blue.svg']";
     String SPINNER = "//span[@id='__spinner_wrapper']";
     String TRY_IT_NOW_JIRA_SOFTWARE = "//div[@class='css-edv954']/div[@class='css-1s1oqgl']/div[@class='css-15lti23']/button/span/span";
     String CREATE_A_NEW_SITE = "//button[@class='css-10vwq9f' and @type='button']";
@@ -31,8 +31,15 @@ public interface installJiraApp {
     String JIRA_NEW_SITE_LOADER = "//div[@class='css-o6a5aa']/button[@class='css-si4rnk']";
     String SEARCH_FOR_APPS_FIELD = "//input[@placeholder='Search for apps']";
     String EVM_APP_LINK = "//div[@class='css-17impu7-Logo e1fhg9wy0']";
+    String WBS_APP_LINK = "//div[@class='css-17impu7-Logo e1fhg9wy0']";
+    String HR_APP_LINK = "//div[@class='css-17impu7-Logo e1fhg9wy0']";
     String TRY_IT_FREE = "//button[@class='css-1xyle4y']";
     String CONFIRM_INSTALL_BTN = "//button[@id='install-app-dialog__install-confirm-btn']";
     String APP_ADDED_BTN = "//div[@data-testid='app-installed']";
     String TRY_IT_LOADER = "//button[@data-testid='app-listing__install-app-btn'] ";
+    String TRY_CONFLUENCE_IN_APP_SWITCHER = "//section[@data-testid='discover__section']//div[@class='sc-cpmKsF gGgomQ']/img";
+    String JIRA_SERVICE_MANAGEMENT = "//a[@data-testid='switcher-item__JIRA_SERVICE_DESKsvashishtha1']";
+    String APP_SWITCHER_COLLAPSE = "//button[@aria-expanded='false']";
+    String APP_SWITCHER_EXPANDED = "//button[@aria-expanded='true']";
+    String JIRA_SOFTWARE = "//img[@src='https://fd-assets.prod.atl-paas.net/images/logos/jira-software/jira-software-blue.svg']";
 }

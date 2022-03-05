@@ -8,6 +8,7 @@ import utilities.PropertyManager;
 import wrappers.PageBase;
 import wrappers.TestBase;
 
+import java.awt.desktop.ScreenSleepEvent;
 import java.util.ArrayList;
 
 public class InstallAppTests extends PageBase implements installJiraApp {
@@ -163,6 +164,13 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         return tryConfluence;
     }
 
+    @FindBy(xpath = JIRA_SOFTWARE)
+    private WebElement jiraSoftware;
+
+    public WebElement getJiraSoftware() {
+        return jiraSoftware;
+    }
+
     @FindBy(xpath = SPINNER)
     private WebElement spinner;
 
@@ -226,6 +234,20 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         return evnAppLink;
     }
 
+    @FindBy(xpath = WBS_APP_LINK)
+    private WebElement wbsAppLink;
+
+    public WebElement getWbsAppLink() {
+        return wbsAppLink;
+    }
+
+    @FindBy(xpath = HR_APP_LINK)
+    private WebElement hrAppLink;
+
+    public WebElement getHrAppLink() {
+        return hrAppLink;
+    }
+
     @FindBy(xpath = TRY_IT_FREE)
     private WebElement tryItFree;
 
@@ -252,6 +274,34 @@ public class InstallAppTests extends PageBase implements installJiraApp {
 
     public WebElement getTryItLoader() {
         return tryItLoader;
+    }
+
+    @FindBy(xpath = APP_SWITCHER_COLLAPSE)
+    private WebElement appSwitcherCollapse;
+
+    public WebElement getAppSwitcherCollapse() {
+        return appSwitcherCollapse;
+    }
+
+    @FindBy(xpath = JIRA_SERVICE_MANAGEMENT)
+    private WebElement jiraServiceManagement;
+
+    public WebElement getJiraServiceManagement() {
+        return jiraServiceManagement;
+    }
+
+    @FindBy(xpath = APP_SWITCHER_EXPANDED)
+    private WebElement appSwitcherExpanded;
+
+    public WebElement getAppSwitcherExpanded() {
+        return appSwitcherExpanded;
+    }
+
+    @FindBy(xpath = TRY_CONFLUENCE_IN_APP_SWITCHER)
+    private WebElement tryConfluenceInAppSwitcher;
+
+    public WebElement getTryConfluenceInAppSwitcher() {
+        return tryConfluenceInAppSwitcher;
     }
 
     public void userJiraSgnIn(String username) {
@@ -298,6 +348,7 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         getSearchForAppsField().sendKeys(propertyManager.getResourceBundle.getProperty("APP_FIRST") + Keys.ENTER);
         base.waitForElementVisible(10, getEvnAppLink());
         base.waitForElementToBeClickable(10, getEvnAppLink());
+        base.pause(2000);
         getEvnAppLink().click();
         base.waitForElementVisible(10, getTryItFree());
         base.waitForElementToBeClickable(10, getTryItFree());
@@ -311,9 +362,10 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         base.waitForElementVisible(10, getSearchForAppsField());
         getSearchForAppsField().clear();
         getSearchForAppsField().sendKeys(propertyManager.getResourceBundle.getProperty("APP_SECOND") + Keys.ENTER);
-        base.waitForElementVisible(10, getEvnAppLink());
-        base.waitForElementToBeClickable(10, getEvnAppLink());
-        getEvnAppLink().click();
+        base.waitForElementVisible(10, getWbsAppLink());
+        base.waitForElementToBeClickable(10, getWbsAppLink());
+        base.pause(2000);
+        getWbsAppLink().click();
         base.waitForElementVisible(10, getTryItFree());
         base.waitForElementToBeClickable(10, getTryItFree());
         getTryItFree().click();
@@ -326,9 +378,10 @@ public class InstallAppTests extends PageBase implements installJiraApp {
         base.waitForElementVisible(10, getSearchForAppsField());
         getSearchForAppsField().clear();
         getSearchForAppsField().sendKeys(propertyManager.getResourceBundle.getProperty("APP_THIRD") + Keys.ENTER);
-        base.waitForElementVisible(10, getEvnAppLink());
-        base.waitForElementToBeClickable(10, getEvnAppLink());
-        getEvnAppLink().click();
+        base.waitForElementVisible(10, getHrAppLink());
+        base.waitForElementToBeClickable(10, getHrAppLink());
+        base.pause(2000);
+        getHrAppLink().click();
         base.waitForElementVisible(10, getTryItFree());
         base.waitForElementToBeClickable(10, getTryItFree());
         getTryItFree().click();
